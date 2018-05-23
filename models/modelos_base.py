@@ -93,7 +93,7 @@ db.dependencias.id_jefe_dependencia.type = 'reference auth_user'
 #
 #######################################################################################################################
 
-db.define_table(
+db.define_table (
     #Nombre de la entidad
     't_Personal',
     #Atributos;
@@ -115,6 +115,10 @@ db.define_table(
     Field('f_cargo',          'string',
           requires=IS_NOT_EMPTY(), notnull=True, label=T('Cargo')),
 
+    Field('f_rol',            'string', 
+          requires=IS_IN_SET(['', 'Director', 'Asistente', 'Jefe de Laboratorio', 'Jefe de Sección', 'Administrador', 'Coordinador', 'Personal de dependencia']),
+          notnull=True, default='', label=T('Rol que desempeña')),
+
     Field('f_ci',             'integer',
           requires=IS_INT_IN_RANGE(minimum=1,maximum=999999999, error_message='Número de cedula no válido.'),
           notnull=True, label=T('Cédula')),
@@ -123,14 +127,41 @@ db.define_table(
           requires=IS_EMAIL(error_message='Debe tener un formato válido. EJ: example@org.com'),
           notnull=True, label=T('Correo Electrónico')),
 
-    Field('f_telefono',       'integer',  default = '00', label=T('Teléfono')),
+    Field('f_celular1',       'string',  default = '00', label=T('Celular 1'),
+          requires=IS_MATCH('[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
+    Field('f_celular2',       'string',  default = '00', label=T('Celular 2'),
+          requires=IS_MATCH('[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
+    Field('f_telefono',       'string',  default = '00',label=T('Teléfono 1'),
+          requires=IS_MATCH('[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
+    Field('f_numero_emergencia', 'string', default = '00', label=T('Teléfono de emergencia'),
+           requires=IS_MATCH('[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9]')),
+
     Field('f_pagina_web',     'string', default = 'N/A', label=T('Página web')),
 
-    Field('f_estatus',        'string', requires=IS_IN_SET(['Activo', 'Jubilado', 'Retirado']),
+    Field('f_estatus',        'string', requires=IS_IN_SET(['Activo', 'Jubilado']),
           default='Activo', notnull=True, label=T('Estatus')),
 
-    Field('f_fecha_ingreso',  'string', default='N/A', label=T('Fecha de Ingreso')),
-    Field('f_fecha_salida',   'string', default='N/A', label=T('Fecha de Salida')),
+    Field('f_condicion', 'string', requires=IS_IN_SET(['En funciones', 'De reposo', 'En Año Sabático', 'De permiso pre y post natal']),
+          default='En funciones', notnull=True, label=T('Condición')),
+
+    Field('f_fecha_ingreso_ulab',  'date', notnull=True, 
+      label=T('Fecha de Ingreso a ULAB'), default=request.now),
+    Field('f_fecha_ingreso_usb',   'date', notnull=True, 
+      label=T('Fecha de Ingreso a USB'), default=request.now),
+    Field('f_fecha_ingreso_admin_public',   'date', notnull=True,
+      label=T('Fecha de Ingreso a la administración pública'), default=request.now),
+
+
+    Field('f_direccion',      'string', default='', label=T('Dirección de Habitación')),
+
+    Field('f_gremio',         'string', default='',
+      requires=IS_IN_SET(['', 'Administrativo', 'Docente', 'Estudiante'])),
+
+    Field('f_categoria',         'string', default='',
+      requires=IS_IN_SET(['', 'Fijo', 'Contratado', 'Pasantía', 'Ayudantía'])),
+
+    Field('f_fecha_de_ingreso',   'date', notnull=False, label=T('Fecha de Ingreso')),
+    Field('f_fecha_de_culminacion', 'date', notnull=False, label=T('Fecha de Culminación')),
 
     # #Referencias
      Field('f_usuario', 'reference auth_user',
