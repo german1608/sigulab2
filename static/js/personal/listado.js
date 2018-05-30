@@ -1,4 +1,4 @@
-function filter(){
+function filter(type){
     // Campo a filtrar
     var eGremio = document.getElementById("fil_gremio");
     var eDependencia = document.getElementById("fil_dependencia");
@@ -13,20 +13,9 @@ function filter(){
      */
 	for(i = 0; i < trs.length; ++i) {
         idtr = trs[i].id.split("_");
-        // if ( type == 'gremio' ){
-        //     trs[i].style.display = 'table-row';
-        //     if ( idtr[1] != opt.value ){
-        //         trs[i].style.display = 'none';
-        //     }
-    
-        // }else if ( type == 'dependencia' ){
-        //     trs[i].style.display = 'None';
-        //     if ( idtr[0] == opt.innerHTML ){
-        //         trs[i].style.display = 'table-row';
-        //     }
-        // }
 
-        if (idtr[0] == optDependencia.innerHTML && idtr[1] == optGremio.value) {
+        if ((idtr[0] == optDependencia.innerHTML || optDependencia.value == 0) && 
+            (idtr[1] == optGremio.value || optGremio.value == 0)) {
             trs[i].style.display = 'table-row';
         }
         else {
