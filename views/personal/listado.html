@@ -25,20 +25,22 @@
 		      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addservice" style="background-color:#0300d7; border-color:#0300d7">Agregar Personal</button>
 		    </div>
 		    <div class="col-sm-4">
-	          <select class="form-control" id="fil_gremio" name="gremio_add" onchange="filter('gremio')" style="margin-left:30px" required>
+	          <select class="form-control" id="fil_gremio" name="gremio_add" onchange="filter()" style="margin-left:30px" required>
 	            <option value="1" selected hidden>Gremio</option>
 	            {{for gremio in gremios:}}
 	            <option id="gremio_opt" value="{{=gremio}}">{{=gremio}}</option>
-	            {{pass}} 
+				{{pass}}
+				<option value="0">(No filtrar por gremio.)</option>
 	          </select>
 	        </div>
 
 	        <div class="col-sm-4">
-	          <select class="form-control" id="fil_dependencia" name="dependencia_add" onchange="filter('dependencia')" style="margin-left:10px" required>
+	          <select class="form-control" id="fil_dependencia" name="dependencia_add" onchange="filter()" style="margin-left:10px" required>
 	            <option value=usuario.dependencia selected hidden>Dependencia</option>
 	            {{for dependencia in dependencias:}}
 	            <option value="{{=dependencia['id']}}">{{=dependencia["nombre"]}}</option>
-	            {{pass}} 
+				{{pass}}
+				<option value="0">(No filtrar por dependencia.)</option>
 	          </select>
           </div>
 	    </div>
