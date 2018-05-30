@@ -10,7 +10,7 @@
 {{end}}
 
 {{block center}}
-
+	<input type="hidden" name="CORREO_LOGIN" value="{{=usuario.f_email}}">
 	<nav class="navbar navbar-inverse navbar-fixed-top breadcrumbs">
 	  <div class="breadcrumb">
 	  <a class="breadcrumb-item" href="{{=URL('..', 'sigulab2')}}">Inicio</a>
@@ -36,7 +36,11 @@
 
 	        <div class="col-sm-4">
 	          <select class="form-control" id="fil_dependencia" name="dependencia_add" onchange="filter('dependencia')" style="margin-left:10px" required>
+<<<<<<< HEAD
 	            <option value="0" selected hidden>Dependencia</option>
+=======
+	            <option value="usuario.dependencia" selected hidden>Dependencia</option>
+>>>>>>> 1361b0c5d9dfe0a8185deea6f11b849b2991c793
 	            {{for dependencia in dependencias:}}
 	            <option value="{{=dependencia['id']}}">{{=dependencia["nombre"]}}</option>
 				{{pass}}
@@ -52,8 +56,25 @@
 
 {{include 'personal/ficha_edicion.html'}}
 
+<<<<<<< HEAD
 {{include 'personal/form_editar.html'}}
 
+=======
+<script type="text/javascript">
+function filter(type){
+	
+	var e = document.getElementById("fil_"+type);
+	var opt = e.options[e.selectedIndex];
+	var trs = document.querySelectorAll('#dummyID tr');
+	for(i = 0; i < trs.length; ++i) {
+	    idtr = trs[i].id.split("_");
+	    if ( type == 'gremio' ){
+	
+	    	trs[i].style.display = 'None';
+	    	if ( idtr[1] == opt.value ){trs[i].style.display = 'table-row';}
+	
+	    }else if ( type == 'dependencia' ){
+>>>>>>> 1361b0c5d9dfe0a8185deea6f11b849b2991c793
 
 <div class="container">
 	<div class="row">
