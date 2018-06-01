@@ -42,8 +42,16 @@ $(document).ready(function () {
 
     // Manejo de error del numero de celular 
     $('[name="celular_add"]').change(function (){
-        if (!($(this).val().match(/[0-9]$/)) || $(this).val()<9999) { // Extension de 1 a 4 digitos
+        if (!($(this).val().match(/^\d+$/gm))) { // Extension de 1 a 4 digitos
             $("#err_celular").html('El celular debe tener solo números');
+            $("#err_celular").show();
+            $(this).addClass('input-error');
+            next_step = false;
+        }
+        else if ($(this).val()<999999){
+            $(this).removeClass('input-error');
+            $("#err_celular").hide();
+            $("#err_celular").html('El celular tiene que tener el siguiente formato XXXXXXX');
             $("#err_celular").show();
             $(this).addClass('input-error');
             next_step = false;
@@ -54,10 +62,41 @@ $(document).ready(function () {
         }
     });
 
+    // Manejo de error del numero de residencia 
+    $('[name="telefono_add"]').change(function (){
+        if (!($(this).val().match(/^\d+$/gm))) { // Extension de 1 a 4 digitos
+            $("#err_telefono").html('El telefono debe tener solo números');
+            $("#err_telefono").show();
+            $(this).addClass('input-error');
+            next_step = false;
+        }
+        else if ($(this).val()<999999999){
+            $(this).removeClass('input-error');
+            $("#err_telefono").hide();
+            $("#err_telefono").html('Tiene que tener el siguiente formato (codigoArea) XXXXXXX');
+            $("#err_telefono").show();
+            $(this).addClass('input-error');
+            next_step = false;
+        }
+        else {
+            $(this).removeClass('input-error');
+            $("#err_telefono").hide();
+        }
+    })
+
+
     // Manejo de error del campo de contacto de emergencia 
     $('[name="contacto_emergencia_add"]').change(function (){
-        if (!($(this).val().match(/[0-9]$/)) || $(this).val()<9999) { // Extension de 1 a 4 digitos
+        if (!($(this).val().match(/^\d+$/gm))) { // Extension de 1 a 4 digitos
             $("#err_emergencia").html('El contacto de emergencia debe tener solo números');
+            $("#err_emergencia").show();
+            $(this).addClass('input-error');
+            next_step = false;
+        }
+        else if ($(this).val()<999999999){
+            $(this).removeClass('input-error');
+            $("#err_emergencia").hide();
+            $("#err_emergencia").html('Tiene que tener el siguiente formato (codigoArea) XXXXXXX');
             $("#err_emergencia").show();
             $(this).addClass('input-error');
             next_step = false;
