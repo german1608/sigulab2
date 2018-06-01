@@ -22,6 +22,7 @@
 	  <span class="breadcrumb-item active">Listado General</span>
 	  </div>
 	</nav>
+<h1 align="center">Gestión de Personal</h1>
 	<div class="container">
 	    <div class="row">
 	        <div class="col-sm-2">
@@ -35,7 +36,7 @@
 	            <option value="1" selected hidden>Gremio</option>
 	            {{for gremio in gremios:}}
 	            <option id="gremio_opt" value="{{=gremio}}">{{=gremio}}</option>
-	            {{pass}} 
+	            {{pass}}
 	          </select>
 	        </div>
 
@@ -44,7 +45,7 @@
 	            <option value="usuario.dependencia" selected hidden>Dependencia</option>
 	            {{for dependencia in dependencias:}}
 	            <option value="{{=dependencia['id']}}">{{=dependencia["nombre"]}}</option>
-	            {{pass}} 
+	            {{pass}}
 	          </select>
           </div>
 	    </div>
