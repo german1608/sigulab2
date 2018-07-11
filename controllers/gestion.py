@@ -18,8 +18,8 @@ def limpia_responsables(texto):
         
         dict = {'Coordinación':'Coordinador',
                 'Coordinacion':'Coordinador',
-                'COORDINACIÓN':'Coordinador',
-                'COORDINACION':'Coordinador',
+                'COORDINACIÓN':'COORDINADOR',
+                'COORDINACION':'COORDINADOR',
                 }
         
         # Se crea una expresion regular para cada clave de dict
