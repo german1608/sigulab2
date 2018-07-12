@@ -502,3 +502,9 @@ def reporte():
     for persona in tabla:
         personas.append(persona)
     return dict(personas=personas)
+
+def reporte_listado():
+    if request.post_vars:
+        accion = '[Personal] Reporte de Personal Generado'
+        db.bitacora_general.insert(f_accion = accion)
+    return redirect(URL('listado_estilo'))
